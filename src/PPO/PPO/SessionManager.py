@@ -3,10 +3,10 @@ from sqlalchemy.orm import sessionmaker
 
 
 class SessionManager():
-    admin_engine = create_engine("postgresql+psycopg2://postgres:1@localhost/Excursions")
-    unlogged_engine = create_engine("postgresql+psycopg2://unlogged_user:unlogged_user@localhost/Excursions")
-    logged_engine = create_engine("postgresql+psycopg2://logged_user:logged_user@localhost/Excursions")
-    guide_engine = create_engine("postgresql+psycopg2://guide:guide@localhost/Excursions")
+    admin_engine = create_engine("postgresql+psycopg2://postgres:1@localhost/PPO")
+    unlogged_engine = create_engine("postgresql+psycopg2://unlogged_user:unlogged_user@localhost/PPO")
+    logged_engine = create_engine("postgresql+psycopg2://logged_user:logged_user@localhost/PPO")
+    guide_engine = create_engine("postgresql+psycopg2://guide:guide@localhost/PPO")
 
     def __init__(self, role=0):
         self.role = role

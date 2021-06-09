@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Date, ForeignKey, create_engine, Table, DATE
 from sqlalchemy.ext.declarative import declarative_base
 
-admin_engine = create_engine("postgresql+psycopg2://postgres:1@localhost/Excursions")
+admin_engine = create_engine("postgresql+psycopg2://postgres:1@localhost/PPO")
 Base = declarative_base()
 
 SightsExcursions = Table('SightsExcursions', Base.metadata,
@@ -45,13 +45,18 @@ class Schedule(Base):
     day = Column(String)
     time = Column(String)
 
-    def __init__(self, excursion, day, time):
+    def __init__(self, id, excursion, day, time):
+        self.id = id
         self.excursion = excursion
         self.day = day
         self.time = time
 
     def __repr__(self):
         return "%s, %s, %s" % (self.excursion, self.day, self.time)
+
+    def __eq__(self, other):
+        return self.excursion == other.excursion and\
+                self.day == other.day and self.time == other.time
 
 
 class Guides(Base):
