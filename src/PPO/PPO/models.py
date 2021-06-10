@@ -40,19 +40,20 @@ class Excursions(Base):
 
 class Schedule(Base):
     __tablename__ = 'schedule'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     excursion = Column(Integer, ForeignKey('excursions.id'))
     day = Column(String)
     time = Column(String)
 
-    def __init__(self, id, excursion, day, time):
-        self.id = id
+    def __init__(self, excursion, day, time, id=None):
+        if id is not None:
+            self.id = id
         self.excursion = excursion
         self.day = day
         self.time = time
 
     def __repr__(self):
-        return "%s, %s, %s" % (self.excursion, self.day, self.time)
+        return "%s, %s, %s, %s" % (self.id, self.excursion, self.day, self.time)
 
     def __eq__(self, other):
         return self.excursion == other.excursion and\
